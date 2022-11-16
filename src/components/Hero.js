@@ -19,7 +19,7 @@ export default function Hero() {
                 styles.getStartedButton
               )}
               // to="/get-started/k8s.md"
-              to={useBaseUrl("/get-started")}
+              to={useBaseUrl("/welcome")}
             >
               Get Started
             </Link>
@@ -35,7 +35,7 @@ export default function Hero() {
               <span className={styles.githubButtonText}>GitHub</span>
             </Link>
             <p className="padding-top--md">
-              A guide about using using Traefik Proxy in Kubernetes
+              A guide about using using Traefik Proxy with Kubernetes
             </p>
           </div>
           <div className="col col--6">
