@@ -1,0 +1,11 @@
+name: Check executables
+on: push
+
+jobs:
+  check-exec:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          chmod +x "${GITHUB_WORKSPACE}/.github/check-exec.sh"
+          "${GITHUB_WORKSPACE}/.github/check-exec.sh"

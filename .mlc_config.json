@@ -1,0 +1,9 @@
+{
+    "ignorePatterns": [
+        { "pattern": "^https://enterprise.onna.com/" },
+        { "pattern": "^http://localhost" },
+        { "pattern": "^https://api.onna.com/v1"},
+        { "pattern": "^https://help.onna.com"}
+    ]
+
+}

@@ -1,0 +1,18 @@
+name: Check Wording
+on:
+  pull_request:
+    paths:
+    - 'docs/**'
+
+jobs:
+  prose:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: errata-ai/vale-action@reviewdog
+        with:
+        # Optional
+          files: '["docs"]'
+        env:
+          # Required
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

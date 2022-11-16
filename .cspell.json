@@ -1,0 +1,59 @@
+// cSpell Settings
+{
+    // Version of the setting file.  Always 0.2
+    "version": "0.2",
+    // language - current active spelling language
+    "language": "en",
+    "gitignoreRoot": ".",
+    "useGitignore": true,
+    "dictionaries": [
+        "css",
+        "html",
+        "fonts",
+        "typescript",
+        "softwareTerms",
+        "companies",
+        "lorem-ipsum",
+        "docker",
+        "bash",
+        "python"
+    ],
+    // words - list of words to be always considered correct
+    "words": [
+        "acemcorp",
+        "Acmecorp",
+        "Asana",
+        "Creativecommons",
+        "cursoring",
+        "datetime",
+        "Datetime",
+        "decompile",
+        "gsutil",
+        "Guillotina",
+        "hadolint",
+        "linkcheck",
+        "Mayda",
+        "myworkspace",
+        "onna",
+        "Onna",
+        "openapi",
+        "Saldana",
+        "signup",
+        "sublicensable",
+        "sunsetting"
+    ],
+    // flagWords - list of words to be always considered incorrect
+    // This is useful for offensive words and common spelling errors.
+    // For example "hte" should be "the"
+    "flagWords": [
+        "hte"
+    ],
+    "ignorePaths": [
+        "CHANGELOG.md",
+        "package.json",
+        "yarn.lock",
+        "lefthook.yml",
+        "outline.txt",
+        "archive"
+    ]
+}

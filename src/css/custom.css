@@ -1,0 +1,69 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+ @import "btn.css";
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #025964;
+  --ifm-color-primary-dark: #02505a;
+  --ifm-color-primary-darker: #024c55;
+  --ifm-color-primary-darkest: #013e46;
+  --ifm-color-primary-light: #02626e;
+  --ifm-color-primary-lighter: #026673;
+  --ifm-color-primary-lightest: #037482;
+  --ifm-footer-background-color: #03192d;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-footer-background-color: #03192d;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+a {
+  color: #00b4cc;
+  text-decoration: var(--ifm-link-decoration);
+  transition: color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+a:hover {
+  color: #00b4cc;
+  text-decoration: none;
+}
+
+.navbar__link:hover, .navbar__link--active {
+  color: #00b4cc;
+  text-decoration: none;
+}
+
+.navbar__link:hover, .navbar__link--active {
+  color: #00b4cc;
+  text-decoration: none;
+}
+
+.menu__link--active {
+  color: #00b4cc;
+  font-weight: 600;
+}
+
+.menu__link--active, .menu__link--active:hover {
+  color: #00b4cc;
+}
+
+.table-of-contents__link:hover, .table-of-contents__link:hover code, .table-of-contents__link--active, .table-of-contents__link--active code {
+  color: 00b4cc;
+  text-decoration: none;
+}

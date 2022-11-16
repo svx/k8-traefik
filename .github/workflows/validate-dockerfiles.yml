@@ -1,0 +1,17 @@
+name: Validate Dockerfile
+on:
+  push:
+    paths:
+      - "./Dockerfile"
+
+jobs:
+  hadolint:
+    name: Hadolint
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jbergstroem/hadolint-gh-action@v1
+        with:
+          dockerfile: Dockerfile website/Dockerfile
+          # ignore warnings (but still fail on errors) from hadolint
+          error_level: 1
