@@ -8,7 +8,8 @@ keywords: [traefik, k8, proxy, deployment]
 ---
 
 In the second part of the tutorial you will deploy Traefik and the needed permissions (first part of the tutorial) to your Kubernetes cluster.
-This deployment will the Traefik dashboard, and uses Kubernetes native Ingress resources as router definitions to route incoming requests.
+
+This will deploy the Traefik dashboard, and you will use Kubernetes native Ingress resources as router definitions to route incoming requests.
 
 ---
 

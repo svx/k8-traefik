@@ -10,7 +10,7 @@ keywords: [traefik, k8, proxy, permissions]
 In the third and last part, you will deploy a application to your Kubernetes cluster.
 This application will use Traefik as reverse proxy on Kubernetes.
 
-You will use use the example application [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub"),
+You will use the example application [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub"),
 the principles are applicable to any other application.
 
 ---
@@ -101,7 +101,7 @@ This file configures Traefik to redirect any incoming requests starting with `/`
 
 At this point, all the configurations are ready!
 
-In the last step of this part of the tutorial, you will will use `kubectl` to apply the configuration to your cluster.
+In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster.
 
 ```shell
 kubectl apply -f 03-whoami.yml \
@@ -110,8 +110,11 @@ kubectl apply -f 03-whoami.yml \
 ```
 
 You should be able to access the `whoami` application and the Traefik dashboard.
-Load the dashboard on a web browser: [`http://localhost:8080`](http://localhost:8080 "Link to localhost on port 8080 for the Traefik dashboard").
 
+Load the dashboard on a web browser: [`http://localhost:8080`](http://localhost:8080 "Link to localhost on port 8080 for the Traefik dashboard").
+<!-- markdown-link-check-disable -->
+![Traefik Dashboard](/img/webui-dashboard.png 'Traefik Dashboard')
+<!-- markdown-link-check-enable -->
 And now access the `whoami` application with cURL:
 
 ```shell
@@ -128,11 +131,11 @@ Accept: */*
 ```
 
 ## Continue Reading
-
+<!-- markdownlint-disable -->
 - [Filter the ingresses](https://doc.traefik.io/traefik/providers/kubernetes-ingress/#ingressclass "Link to Traefik docs about Ingress Class") to use with [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class "Link to Kubernetes docs about Ingress Class")
 - Use [IngressRoute CRD](https://doc.traefik.io/traefik/providers/kubernetes-crd/ "Kubernetes Ingress controller")
 - Protect [ingresses with TLS (Transport Layer Security)](https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/#enabling-tls-via-annotations "Ingresses with TLS")
-
+<!-- markdownlint-enable -->
 ## Recap
 
 In the third and last part of the tutorial you created a `Deployment`, a `Service` and a `Ingress` for an example application

@@ -79,7 +79,9 @@ metadata:
 
 ## ClusterRoleBinding
 
+<!-- markdownlint-disable -->
 Now, bind the role on the account to apply the permissions and rules on the latter, this is done with a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
+<!-- markdownlint-enable -->
 
 Create a file called `01-role-binding.yml`, with the following content:
 
@@ -112,6 +114,8 @@ In this guide, `subjects` only contains the account created in `00-account.yml`.
 
 ## Recap
 
-In this part of the tutorial you created a ClusterRole file, configured a ServiceAccount file and a ClusterRoleBinding file.
+In this part of the tutorial you created a ClusterRole, a ServiceAccount and a ClusterRoleBinding.
+
 These are the first steps needed for Traefik.
+
 Continue with the next part of the tutorial to learn how to deploy these files.

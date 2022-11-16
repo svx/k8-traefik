@@ -43,7 +43,9 @@
         "sunsetting",
         "traefik",
         "Traefik",
-        "kubernetesingress"
+        "kubernetesingress",
+        "acff",
+        "ingressclasses"
 
     ],
     // flagWords - list of words to be always considered incorrect
