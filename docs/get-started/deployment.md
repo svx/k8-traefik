@@ -69,7 +69,7 @@ In this deployment, the static configuration enables the Traefik dashboard, and 
 :::info
 
 - When there is no entry point in the static configuration, Traefik creates a default one called `web` using the port `80` routing HTTP requests.
-- When enabling the [`api.insecure`](../../operations/api/#insecure) mode, Traefik exposes the dashboard on the port `8080`."
+- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`."
 :::
 
 ## Service
@@ -122,7 +122,7 @@ It is **strongly** recommended to understand the available [service types](https
 
 ## Apply Configuration
 
-In the last step of this part of the tutorial, you will will use `kubectl` to apply the configuration to your cluster.
+In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster.
 
 ```shell
 kubectl apply -f 00-role.yml \
