@@ -10,4 +10,13 @@
 - Rewrote content and reduced usage of admonitions
 - Added more CI checks (GitHub actions)
 - Added lefthook for pre-commit checks
+- Adjusted and unified to use "you" with/in voice and tone, removed "we", since we is not always friendly and also not true, the user is following the tutorial and not we and the user
+- Changes guide to tutorial, since it is a step-by-step walk-through tutorial, a guide would be more basic
+
+---
+
+Wrote different versions and did user testing with both of them, changed and improved according to feedback, the process of getting feedback and working together is awesome.
+Added more base information to make sure to meet the audience of experienced and newer people
+Decided to rewrite existing docs (use them as base) to make sure to stay closer to the current style.
+Starting new from scratch is usually easier 
 

@@ -35,7 +35,7 @@ export default function Hero() {
               <span className={styles.githubButtonText}>GitHub</span>
             </Link>
             <p className="padding-top--md">
-              A guide about using using Traefik Proxy with Kubernetes
+              Traefik Proxy with Kubernetes
             </p>
           </div>
           <div className="col col--6">
