@@ -1,0 +1,11 @@
+- Brought down readability from 10 to 8 (wording, grammar, sentence length)
+- Removed weasel words
+- Changed structure, use more sub header for parts, easier to follow
+- Added numbering order
+- Moved explanations on top of code examples, to explain first what the code is doing, that is IMHO better for DX and stuff
+- Unified the order in YAML examples
+- Added more base info about k8 and Traefik to add more helpful value
+- Moved reference YAML files out of docs and use 'pure' git. By doing so these can be tested with CI and having them in the docs adds no value
+- Added link descriptions with fill explanations
+- Rewrote content and reduced usage of admonitions
+
