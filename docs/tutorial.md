@@ -34,7 +34,9 @@ This tutorial assumes that you have the following requirements already setup and
 
 ---
 
-## Create A ClusterRole
+## Permissions And Access
+
+### Create A ClusterRole
 
 [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
 An RBAC Role or ClusterRole contains rules that represent a set of permissions.
@@ -91,7 +93,7 @@ You can checkout the [full file reference](https://raw.githubusercontent.com/svx
 
 ---
 
-## Configure A Service Account
+### Configure A Service Account
 
 In the next step you will create a dedicated [*Service* account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
 
@@ -106,7 +108,7 @@ metadata:
 
 ---
 
-## Create AClusterRoleBinding
+### Create AClusterRoleBinding
 
 <!-- markdownlint-disable -->
 After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
@@ -301,7 +303,11 @@ spec:
 
 ---
 
-### Service
+### Create Service Resource
+
+<!-- markdownlint-disable -->
+In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/#service-resource "Link to Kubernetes docs about service resources") is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a micro-service).
+<!-- markdownlint-enable -->
 
 Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
 
