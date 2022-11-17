@@ -108,7 +108,7 @@ metadata:
 
 ---
 
-### Create AClusterRoleBinding
+### Create A ClusterRoleBinding
 
 <!-- markdownlint-disable -->
 After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
