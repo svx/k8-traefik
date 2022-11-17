@@ -16,7 +16,6 @@ The tutorial assumes base knowledge and understanding of:
 - [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller")
 - [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses")
 - [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments")
-- Static, and dynamic configurations
 - [Traefik](https://doc.traefik.io/traefik/ "Link to Traefik documentation")
 <!-- markdownlint-disable -->
 
