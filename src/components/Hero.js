@@ -19,7 +19,7 @@ export default function Hero() {
                 styles.getStartedButton
               )}
               // to="/get-started/k8s.md"
-              to={useBaseUrl("/welcome")}
+              to={useBaseUrl("/tutorial")}
             >
               Get Started
             </Link>
@@ -42,7 +42,7 @@ export default function Hero() {
             <img
               className={styles.logo}
               src={useBaseUrl("/img/hero.png")}
-              alt="Gotenberg Hero Logo"
+              alt="Hero Logo"
             />
           </div>
         </div>
