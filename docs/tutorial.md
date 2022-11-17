@@ -131,10 +131,10 @@ A [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingres
 is a software that runs in the same way as any other application on a cluster.
 
 To start Traefik on the Kubernetes cluster,
-a [`Deployment`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) resource must exist to describe how to configure
+a [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) resource must exist to describe how to configure
 and scale containers horizontally to support larger workloads.
 
-Create a file called `02-traefik.yml` and paste the following `Deployment` content:
+Create a file called `02-traefik.yml` and paste the following content:
 
 ```yaml tab="02-traefik.yml"
 kind: Deployment
@@ -168,7 +168,7 @@ spec:
               containerPort: 8080
 ```
 
-The deployment contains an important attribute for customizing Traefik: `args`.
+The *Deployment* contains an important attribute for customizing Traefik: `args`.
 These arguments are the static configuration for Traefik.
 
 From here, it is possible to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
@@ -180,13 +180,13 @@ In this deployment, the static configuration enables the Traefik dashboard, and 
 :::info
 
 - When there is no entry point in the static configuration, Traefik creates a default one called `web` using the port `80` routing HTTP requests.
-- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`."
+- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
 :::
 
-A deployment manages scaling and then can create lots of containers, called [Pods](https://kubernetes.io/docs/concepts/workloads/pods/).
-Each Pod is configured following the `spec` field in the deployment.
+A *Deployment* manages scaling and then can create multiple containers, called [Pods](https://kubernetes.io/docs/concepts/workloads/pods/).
+Each Pod is configured following the `spec` field in the *Deployment* configuration.
 
-Given that, a Deployment can run multiple Traefik Proxy Pods, a piece is required to forward the traffic to any of the instance:
+Given that, a *Deployment* can run multiple Traefik Proxy Pods, a piece is required to forward the traffic to any of the instance:
 namely a [`Service`](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services").
 
 Create a file called `02-traefik-services.yml` and insert the two `Service` resources:
@@ -231,7 +231,7 @@ It is **strongly** recommended to understand the available [service types](https
 
 ## Apply Configuration
 
-In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster.
+In the next step, you will use `kubectl` to apply the configuration to your cluster.
 
 ```shell
 kubectl apply -f 00-role.yml \
@@ -241,9 +241,9 @@ kubectl apply -f 00-role.yml \
               -f 02-traefik-services.yml
 ````
 
-## Deployment
+## Application Proxy
 
-The `whoami` application is a basic HTTP server running on port 80 which answers host-related information to the incoming requests.
+The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port 80 which answers host-related information to the incoming requests.
 
 Start by creating a file called `03-whoami.yml` and paste the following content:
 
