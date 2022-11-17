@@ -7,14 +7,14 @@ description: Step-by-step tutorial for using Traefik as reverse proxy with Kuber
 keywords: [traefik, k8, proxy, permissions]
 ---
 
-This tutorial provides a step-by-step introduction about how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") as in a Kubernetes environment.
+This tutorial provides a step-by-step introduction about how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") in Kubernetes.
 
 <!-- markdownlint-disable -->
-You will learn about the basics required to start Traefik such as [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configuration.
+You will learn about the basics required to use Traefik on Kubernetes, such as [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configurations.
 
-## Prerequisite
+### Prerequisite
 
-The tutorial prerequisites base knowledge and understanding of Kubernetes, Ingress Controller, Ingresses, Deployments, Helm, static, and dynamic configuration and Traefik.
+The tutorial prerequisites base knowledge and understanding of Kubernetes, Ingress Controllers, Ingresses, Deployments, Helm, static, and dynamic configurations and Traefik.
 
 If you are new to these topics do not worry! 
 Check the links below to discover more about the principles of Traefik and Kubernetes
@@ -23,15 +23,26 @@ Check the links below to discover more about the principles of Traefik and Kuber
 - [Kubernetes documentation](https://kubernetes.io/docs/home/ "Link to documentation of Traefik Proxy")
 - [Helm](https://helm.sh/ "Link to website of Helm") (optional)
 
+### Requirements
+
+This tutorial assumes that you have the following requirements already setup and working:
+
+- A [Kubernetes cluster](https://kubernetes.io/ "link to website of Kubernetes")
+- [`kubectl`](https://kubernetes.io/docs/reference/kubectl/ "Link to docs about kubectl")
+- `curl`
+- [Helm](https://helm.sh/ "Link to website of Helm") (optional)
+
 ---
 
-## Create ClusterRole
+## Create A ClusterRole
+
+[Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+An RBAC Role or ClusterRole contains rules that represent a set of permissions.
+
+The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
 To use the Kubernetes API, Traefik needs permissions.
 You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
-
-This [permission mechanism](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is based on roles defined by the cluster administrator.
-The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
 The first step is to create a [`ClusterRole`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole).
 This role specifies available resources, permissions and actions for the role.
@@ -78,7 +89,9 @@ rules:
 You can checkout the [full file reference](https://raw.githubusercontent.com/svx/k8-traefik/main/reference/rbac.yaml "Link to full file reference on GitHub") for `00-role.yml` on GitHub.
 <!-- markdownlint-enable -->
 
-## Configure Service Account
+---
+
+## Configure A Service Account
 
 In the next step you will create a dedicated [*Service* account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
 
@@ -91,11 +104,15 @@ metadata:
   name: traefik-account
 ```
 
+---
+
 ## ClusterRoleBinding
 
 <!-- markdownlint-disable -->
-Now, bind the role on the account to apply the permissions and rules on the latter, this is done with a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
+After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
 <!-- markdownlint-enable -->
+
+Now, bind the role on the account to apply the permissions and rules.
 
 Create a file called `01-role-binding.yml`, with the following content:
 
@@ -129,6 +146,10 @@ If you prefer to use Helm, please refer to the [official Traefik documentation a
 
 A [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/#what-is-a-kubernetes-ingress-controller)
 is a software that runs in the same way as any other application on a cluster.
+
+---
+
+## Deployment
 
 To start Traefik on the Kubernetes cluster,
 a [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) resource must exist to describe how to configure
@@ -171,7 +192,7 @@ spec:
 The *Deployment* contains an important attribute for customizing Traefik: `args`.
 These arguments are the static configuration for Traefik.
 
-From here, it is possible to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
+You can use arguments to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
 
 For more information, please check the [official configuration docs](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Link to official static CLI docs").
 
@@ -225,9 +246,11 @@ It is possible to expose a service in different ways!
 Depending on your working environment and use case, the `spec.type` might change.
 
 <!-- markdownlint-disable -->
-It is **strongly** recommended to understand the available [service types](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types "Link to Kubernetes doc about service types") before proceeding to the next step.
+It is **important** to understand the available [service types](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types "Link to Kubernetes doc about service types") before proceeding to the next step.
 <!-- markdownlint-enable -->
 :::
+
+---
 
 ## Apply Configuration
 
@@ -239,7 +262,9 @@ kubectl apply -f 00-role.yml \
               -f 01-role-binding.yml \
               -f 02-traefik.yml \
               -f 02-traefik-services.yml
-````
+```
+
+---
 
 ## Application Proxy
 
@@ -273,6 +298,8 @@ spec:
             - name: web
               containerPort: 80
 ```
+
+---
 
 ## Service
 
@@ -357,12 +384,17 @@ User-Agent: curl/7.35.0
 Accept: */*
 ```
 
+---
+
 ## Continue Reading
 <!-- markdownlint-disable -->
 - [Filter the ingresses](https://doc.traefik.io/traefik/providers/kubernetes-ingress/#ingressclass "Link to Traefik docs about Ingress Class") to use with [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class "Link to Kubernetes docs about Ingress Class")
 - Use [IngressRoute CRD](https://doc.traefik.io/traefik/providers/kubernetes-crd/ "Kubernetes Ingress Controller")
 - Protect [ingresses with TLS (Transport Layer Security)](https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/#enabling-tls-via-annotations "Ingresses with TLS")
 <!-- markdownlint-enable -->
+
+---
+
 ## Recap
 
 In this tutorial you learned the basics about how to configure, deploy and use Traefik as reverse proxy with Kubernetes.

@@ -45,7 +45,8 @@
         "Traefik",
         "kubernetesingress",
         "acff",
-        "ingressclasses"
+        "ingressclasses",
+        "RABA"
 
     ],
     // flagWords - list of words to be always considered incorrect
