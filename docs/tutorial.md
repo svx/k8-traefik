@@ -7,14 +7,28 @@ description: Step-by-step tutorial for using Traefik as reverse proxy with Kuber
 keywords: [traefik, k8, proxy, permissions]
 ---
 
-Here needs to be an intro!
+This tutorial provides a step-by-step introduction about how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") as in a Kubernetes environment.
+
+<!-- markdownlint-disable -->
+You will learn about the basics required to start Traefik such as [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configuration.
+
+## Prerequisite
+
+The tutorial prerequisites base knowledge and understanding of Kubernetes, Ingress Controller, Ingresses, Deployments, Helm, static, and dynamic configuration and Traefik.
+
+If you are new to these topics do not worry! 
+Check the links below to discover more about the principles of Traefik and Kubernetes
+
+- [Traefik documentation](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy")
+- [Kubernetes documentation](https://kubernetes.io/docs/home/ "Link to documentation of Traefik Proxy")
+- [Helm](https://helm.sh/ "Link to website of Helm") (optional)
 
 ---
 
 ## Create ClusterRole
 
 To use the Kubernetes API, Traefik needs permissions.
-Yuu will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
+You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
 
 This [permission mechanism](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) is based on roles defined by the cluster administrator.
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
