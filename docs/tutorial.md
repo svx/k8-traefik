@@ -276,7 +276,7 @@ kubectl apply -f 00-role.yml \
 
 ---
 
-## Proxy Example Application
+## Proxying Applications
 
 The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port `80`
 which answers host-related information to the incoming requests.
