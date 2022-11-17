@@ -250,8 +250,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - targetPort: web
-      port: 80
+    - port: 80 
+      targetPort: web
   selector:
     app: traefik
 ```
@@ -284,8 +284,9 @@ kubectl apply -f 00-role.yml \
 
 ## 3. Proxying Applications
 
-The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port `80`
-which answers host-related information to the incoming requests.
+For this tutorial, you will deploy and use the example [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
+
+The application is a HTTP server running on port `80` which answers host-related information to the incoming requests.
 
 Start by creating a file called `03-whoami.yml` and paste the following content:
 
