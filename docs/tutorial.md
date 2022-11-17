@@ -106,7 +106,7 @@ metadata:
 
 ---
 
-## ClusterRoleBinding
+## Create AClusterRoleBinding
 
 <!-- markdownlint-disable -->
 After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
@@ -149,7 +149,7 @@ is a software that runs in the same way as any other application on a cluster.
 
 ---
 
-## Deployment
+## Traefik Deployment
 
 To start Traefik on the Kubernetes cluster,
 a [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) resource must exist to describe how to configure
@@ -266,7 +266,7 @@ kubectl apply -f 00-role.yml \
 
 ---
 
-## Application Proxy
+## Proxy Example Application
 
 The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port `80`
 which answers host-related information to the incoming requests.
@@ -301,7 +301,7 @@ spec:
 
 ---
 
-## Service
+### Service
 
 Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
 
