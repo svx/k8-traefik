@@ -80,7 +80,7 @@ You can checkout the [full file reference](https://raw.githubusercontent.com/svx
 
 ## Configure Service Account
 
-In the next step you will create a dedicated [service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
+In the next step you will create a dedicated [*Service* account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
 
 Create a file called `00-account.yml`, with the following [`ServiceAccount`](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/#ServiceAccount "Link to ServiceAccount API docs") content:
 
@@ -243,7 +243,8 @@ kubectl apply -f 00-role.yml \
 
 ## Application Proxy
 
-The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port 80 which answers host-related information to the incoming requests.
+The [whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application is a HTTP server running on port `80`
+which answers host-related information to the incoming requests.
 
 Start by creating a file called `03-whoami.yml` and paste the following content:
 
@@ -275,7 +276,7 @@ spec:
 
 ## Service
 
-Continue by creating the following `Service` resource in a file called `03-whoami-services.yml`:
+Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
 
 ```yaml tab="03-whoami-services.yml"
 apiVersion: v1
@@ -323,7 +324,7 @@ spec:
               name: web
 ```
 
-This file configures Traefik to redirect any incoming requests starting with `/` to the `whoami:80` service.
+This file configures Traefik to redirect any incoming requests starting with `/` to the `whoami:80` *Service*.
 
 At this point, all the configurations are ready!
 
