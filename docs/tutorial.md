@@ -38,9 +38,9 @@ Please make sure you have the following requirements already working:
 
 ## 1. Permissions And Access
 
-Kubernetes works with [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(*RBAC*) which a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+Kubernetes works with [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RBAC")(RBAC) which a method of regulating access to computer or network resources based on the roles of individual users within your organization.
 
-An *RBAC* Role or *ClusterRole* contains rules that represent a set of permissions.
+An RBAC Role or *ClusterRole* contains rules that represent a set of permissions.
 
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
@@ -151,7 +151,7 @@ subjects:
 
 :::note
 <!-- markdownlint-disable -->
-If you prefer Helm to manage Kubernetes applications, please refer to the [official Traefik documentation about it](https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart "Link to official Traefik docs about Helm").
+If you prefer Helm to manage Kubernetes applications, please refer to the [official Traefik documentation](https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart "Link to official Traefik docs about Helm") about it.
 <!-- markdownlint-enable -->
 :::
 
@@ -164,7 +164,7 @@ A [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-re
 It can create multiple containers (Pods).
 Each Pod is configured following the `spec` field in the *Deployment* configuration.
 <!-- markdownlint-enable -->
-To start Traefik on the Kubernetes cluster, a *Deployment* resource must exist.
+To start Traefik on the Kubernetes cluster, a *Deployment* resource is needed.
 
 The *Deployment* contains an important attribute for customizing Traefik: `args`.
 
