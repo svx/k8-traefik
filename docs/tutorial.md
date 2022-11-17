@@ -262,7 +262,7 @@ It is **important** to understand the available [*ServiceTypes*](https://kuberne
 
 ---
 
-## Apply The Configuration
+### Deploy The Traefik Configuration
 
 In the next step, you will use `kubectl` to apply the configuration to your cluster:
 
@@ -338,7 +338,11 @@ spec:
 Traefik is notified when an Ingress resource is created, updated, or deleted.
 This makes the process dynamic.
 
-The Ingresses are, in a way, the [dynamic configuration](https://doc.traefik.io/traefik/providers/kubernetes-ingress/ "Link to official Traefik docs about Kubernetes Ingresses") for Traefik.
+---
+
+### Create An Ingress
+
+Ingresses are, in a way, the [dynamic configuration](https://doc.traefik.io/traefik/providers/kubernetes-ingress/ "Link to official Traefik docs about Kubernetes Ingresses") for Traefik.
 
 :::tip
 Find more information on [Ingress Controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/),
@@ -369,7 +373,11 @@ This file configures Traefik to redirect any incoming requests starting with `/`
 
 At this point, all the configurations are ready!
 
-In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster:
+---
+
+### Deploy The Application
+
+In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration of the application to your cluster:
 
 ```shell
 kubectl apply -f 03-whoami.yml \
