@@ -46,7 +46,8 @@
         "kubernetesingress",
         "acff",
         "ingressclasses",
-        "RABA"
+        "RABA",
+        "Proxying"
 
     ],
     // flagWords - list of words to be always considered incorrect
