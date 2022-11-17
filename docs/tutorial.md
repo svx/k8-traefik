@@ -213,7 +213,7 @@ In this *Deployment*, the static configuration enables the Traefik dashboard, an
 - When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
 :::
 
-A *Deployment* manages scaling and then can create multiple containers, called [Pods](https://kubernetes.io/docs/concepts/workloads/pods/).
+A *Deployment* manages scaling and can create multiple containers (Pods).
 Each Pod is configured following the `spec` field in the *Deployment* configuration.
 
 <!-- markdownlint-disable -->
