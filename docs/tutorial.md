@@ -44,7 +44,7 @@ An RBAC Role or *ClusterRole* contains rules that represent a set of permissions
 
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
-You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for that.
+You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") to do so.
 
 ### 1.1 Create A Cluster Role
 
