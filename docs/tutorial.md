@@ -9,12 +9,11 @@ keywords: [traefik, k8, proxy, permissions]
 
 This tutorial provides a step-by-step introduction about how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") in Kubernetes.
 
-<!-- markdownlint-disable -->
-You will learn about the basics required to use Traefik on Kubernetes, such as [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configurations.
-
 ### Prerequisite
 
-The tutorial prerequisites base knowledge and understanding of Kubernetes, Ingress Controllers, Ingresses, Deployments, Helm, static, and dynamic configurations and Traefik.
+<!-- markdownlint-disable -->
+The tutorial prerequisites base knowledge and understanding of [Kubernetes](https://kubernetes.io/ "link to website of Kubernetes"), [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configurations and [Traefik](https://doc.traefik.io/traefik/ "Link to Traefik documentation").
+<!-- markdownlint-disable -->
 
 If you are new to these topics do not worry! 
 Check the links below to discover more about the principles of Traefik and Kubernetes
@@ -36,14 +35,13 @@ This tutorial assumes that you have the following requirements already setup and
 
 ## Permissions And Access
 
-[Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(*RBAC*) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+Kubernetes works with [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(*RBAC*) which a method of regulating access to computer or network resources based on the roles of individual users within your organization.
 
 An *RBAC* Role or *ClusterRole* contains rules that represent a set of permissions.
 
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
-To use the Kubernetes API, Traefik needs permissions.
-You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
+You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for that.
 
 ### Create A Cluster Role
 
@@ -94,9 +92,15 @@ You can checkout the [full file reference](https://raw.githubusercontent.com/svx
 
 ### Configure A Service Account
 
-In the next step you will create a dedicated [*ServiceAccount*](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
+In the next step you will create a dedicated [*ServiceAccount*](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about ServiceAccounts") for Traefik.
 
-Create a file called `00-account.yml`, with the following [*ServiceAccount*](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/#ServiceAccount "Link to ServiceAccount API docs") content:
+<!-- markdownlint-disable -->
+A [*ServiceAccount*](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/#ServiceAccount "Link to ServiceAccount API docs") provides an identity for processes that run in a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/ "Link to Kubernetes docs about Pods"), and maps to a *ServiceAccount* object.
+<!-- markdownlint-enable -->
+
+When you authenticate to the API server, you identify yourself as a particular user.
+
+Create a file called `00-account.yml`, with the following content:
 
 ```yaml title="00-account.yml"
 apiVersion: v1
