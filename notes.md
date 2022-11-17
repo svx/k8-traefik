@@ -8,4 +8,6 @@
 - Moved reference YAML files out of docs and use 'pure' git. By doing so these can be tested with CI and having them in the docs adds no value
 - Added link descriptions with fill explanations
 - Rewrote content and reduced usage of admonitions
+- Added more CI checks (GitHub actions)
+- Added lefthook for pre-commit checks
 
