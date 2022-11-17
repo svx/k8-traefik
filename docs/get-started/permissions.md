@@ -104,13 +104,10 @@ subjects:
     namespace: default # Using "default" because we did not specify a namespace when creating the ClusterAccount.
 ```
 
-:::info
-
 - `roleRef` is the Kubernetes reference to the role created in `00-role.yml`
 - `subjects` is the list of accounts reference."
 
-In this guide, `subjects` only contains the account created in `00-account.yml`.
-:::
+In this tutorial, `subjects` only contains the account created in `00-account.yml`.
 
 ## Recap
 

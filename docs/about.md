@@ -3,23 +3,25 @@ sidebar_position: 1
 id: welcome
 title: Welcome
 sidebar_label: About
-description: About this guide
+description: About this tutorial
 keywords: [traefik, k8, proxy]
 ---
 
 Everything you need to know before you get started with the tutorial.
+
 What is this tutorial about, what will you learn and needed prerequisites.
 
 This tutorial assumes that you have a running Kubernetes cluster and that you are familiar with base operations of Kubernetes.
 
 If all of this is still new to you, do not worry! Everyone was once in your position!
+
 Check the links under [prerequisite](#prerequisite "Link to prerequisite in this page") to learn more.
 
 ---
 
-## About this guide
+## About this tutorial
 
-This guide provides a step-by-step introduction of how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") in a Kubernetes environment.
+This tutorial provides a step-by-step introduction about how to run an applications behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") as in a Kubernetes environment.
 
 <!-- markdownlint-disable -->
 You will learn about the basics required to start Traefik such as [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller"), [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses"), [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments"), static, and dynamic configuration.
@@ -27,7 +29,8 @@ You will learn about the basics required to start Traefik such as [Ingress Contr
 
 As part of the tutorial you will you setup and example application and you will use Traefik as reverse proxy.
 
-The guide is sorted into small, task-oriented topics — not chapters. This means that you don’t need to skim through an entire manual to find the answer to your questions.
+The tutorial is sorted into small, task-oriented topics, not chapters.
+This means that you don’t need to skim through an entire manual to find the answer to your questions.
 
 ## Prerequisite
 

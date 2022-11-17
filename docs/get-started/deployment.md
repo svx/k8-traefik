@@ -111,7 +111,7 @@ spec:
     app: traefik
 ```
 
-:::warning
+:::note
 It is possible to expose a service in different ways!
 
 Depending on your working environment and use case, the `spec.type` might change.
