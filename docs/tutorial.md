@@ -155,7 +155,7 @@ If you prefer Helm to manage Kubernetes applications, please refer to the [offic
 <!-- markdownlint-enable -->
 :::
 
-A [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/#what-is-a-kubernetes-ingress-controller)
+An [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/#what-is-a-kubernetes-ingress-controller)
 acts as a reverse proxy and load balancer to reduce complexity of Kubernetes traffic routing.
 It provides a bridge between Kubernetes services and external ones.
 
@@ -286,7 +286,7 @@ kubectl apply -f 00-role.yml \
 
 For this tutorial, you will use the example [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
 
-The application is a HTTP server running on port `80` which answers host-related information to the incoming requests.
+The application is an HTTP server running on port `80` which answers host-related information to the incoming requests.
 
 Start by creating a file called `03-whoami.yml` and paste the following content:
 
@@ -321,7 +321,7 @@ spec:
 ### 3.1 Create A Service Resource
 
 <!-- markdownlint-disable -->
-In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/#service-resource "Link to Kubernetes docs about service resources") is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a micro-service).
+In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/#service-resource "Link to Kubernetes docs about service resources") is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a microservice).
 <!-- markdownlint-enable -->
 
 Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
@@ -337,7 +337,7 @@ spec:
     - name: web
       port: 80
       targetPort: web
-      
+
   selector:
     app: whoami
 ```
