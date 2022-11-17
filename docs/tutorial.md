@@ -311,7 +311,7 @@ spec:
 
 ---
 
-### Create Service Resource
+### Create A Service Resource
 
 <!-- markdownlint-disable -->
 In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/#service-resource "Link to Kubernetes docs about service resources") is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a micro-service).
