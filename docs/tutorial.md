@@ -114,10 +114,8 @@ metadata:
 ### Create A Cluster Role Binding
 
 <!-- markdownlint-disable -->
-After creating *ClusterRole*, you assign it to a user or group of users by creating a [*ClusterRoleBinding*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
+After creating *ClusterRole*, you assign it to a user or group of users by creating a [*ClusterRoleBinding*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding") which will grant permissions to the cluster for the *ServiceAccount* you created in the previous step.
 <!-- markdownlint-enable -->
-
-Now, bind the role on the account to apply the permissions and rules.
 
 Create a file called `01-role-binding.yml`, with the following content:
 
