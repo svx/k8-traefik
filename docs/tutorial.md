@@ -36,9 +36,8 @@ This tutorial assumes that you have the following requirements already setup and
 
 ## Permissions And Access
 
-### Create A Cluster Role
-
 [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(*RBAC*) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+
 An *RBAC* Role or *ClusterRole* contains rules that represent a set of permissions.
 
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
@@ -46,8 +45,8 @@ The role is then bound to an account used by an application, in this case, Traef
 To use the Kubernetes API, Traefik needs permissions.
 You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
 
-The first step is to create a [*ClusterRole*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole).
-This role specifies available resources, permissions and actions for the role.
+### Create A Cluster Role
+
 
 Create a file called `00-role.yml`, with the following content:
 
