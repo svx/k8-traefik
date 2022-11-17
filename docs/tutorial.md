@@ -167,9 +167,7 @@ Each Pod is configured following the `spec` field in the *Deployment* configurat
 To start Traefik on the Kubernetes cluster, a *Deployment* resource is needed.
 
 The *Deployment* contains an important attribute for customizing Traefik: `args`.
-
 These arguments are the static configuration for Traefik.
-
 You can use `args` to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
 
 For more information, please check the [official configuration docs](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Link to official static CLI docs").
