@@ -38,15 +38,15 @@ This tutorial assumes that you have the following requirements already setup and
 
 ### Create A Cluster Role
 
-[Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
-An RBAC Role or ClusterRole contains rules that represent a set of permissions.
+[Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(*RBAC*) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+An *RBAC* Role or *ClusterRole* contains rules that represent a set of permissions.
 
 The role is then bound to an account used by an application, in this case, Traefik Proxy.
 
 To use the Kubernetes API, Traefik needs permissions.
 You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") for doing so.
 
-The first step is to create a [`ClusterRole`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole).
+The first step is to create a [*ClusterRole*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole).
 This role specifies available resources, permissions and actions for the role.
 
 Create a file called `00-role.yml`, with the following content:
@@ -95,9 +95,9 @@ You can checkout the [full file reference](https://raw.githubusercontent.com/svx
 
 ### Configure A Service Account
 
-In the next step you will create a dedicated [*Service* account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
+In the next step you will create a dedicated [*ServiceAccount*](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about service accounts") for Traefik.
 
-Create a file called `00-account.yml`, with the following [`ServiceAccount`](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/#ServiceAccount "Link to ServiceAccount API docs") content:
+Create a file called `00-account.yml`, with the following [*ServiceAccount*](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/#ServiceAccount "Link to ServiceAccount API docs") content:
 
 ```yaml title="00-account.yml"
 apiVersion: v1
@@ -111,7 +111,7 @@ metadata:
 ### Create A Cluster Role Binding
 
 <!-- markdownlint-disable -->
-After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
+After creating *ClusterRole*, you assign it to a user or group of users by creating a [*ClusterRoleBinding*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
 <!-- markdownlint-enable -->
 
 Now, bind the role on the account to apply the permissions and rules.
@@ -181,9 +181,11 @@ spec:
       containers:
         - name: traefik
           image: traefik:v2.9
+          # highlight-start
           args:
             - --api.insecure
             - --providers.kubernetesingress
+          # highlight-end
           ports:
             - name: web
               containerPort: 80
@@ -192,6 +194,7 @@ spec:
 ```
 
 The *Deployment* contains an important attribute for customizing Traefik: `args`.
+
 These arguments are the static configuration for Traefik.
 
 You can use arguments to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
@@ -202,8 +205,8 @@ In this *Deployment*, the static configuration enables the Traefik dashboard, an
 
 :::info
 
-- When there is no entry point in the static configuration, Traefik creates a default one called `web` using the port `80` routing HTTP requests.
-- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
+- When there is no entry point in the static configuration, Traefik creates a default one called *web* using the port `80` routing HTTP requests.
+- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
 :::
 
 A *Deployment* manages scaling and then can create multiple containers, called [Pods](https://kubernetes.io/docs/concepts/workloads/pods/).
@@ -212,7 +215,7 @@ Each Pod is configured following the `spec` field in the *Deployment* configurat
 Given that, a *Deployment* can run multiple Traefik Proxy Pods, a piece is required to forward the traffic to any of the instance:
 namely a [`Service`](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services").
 
-Create a file called `02-traefik-services.yml` and insert the two `Service` resources:
+Create a file called `02-traefik-services.yml` and insert the two *Service* resources:
 
 ```yaml tab="02-traefik-services.yml"
 apiVersion: v1
@@ -243,12 +246,12 @@ spec:
 ```
 
 :::note
-It is possible to expose a service in different ways!
+It is possible to expose a *Service* in different ways!
 
 Depending on your working environment and use case, the `spec.type` might change.
 
 <!-- markdownlint-disable -->
-It is **important** to understand the available [service types](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types "Link to Kubernetes doc about service types") before proceeding to the next step.
+It is **important** to understand the available [*ServiceTypes*](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types "Link to Kubernetes doc about ServiceTypes") before proceeding to the next step.
 <!-- markdownlint-enable -->
 :::
 
@@ -337,7 +340,7 @@ Find more information on [Ingress Controllers](https://kubernetes.io/docs/concep
 and [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the official Kubernetes documentation.
 :::
 
-Create a file called `04-whoami-ingress.yml` and insert the `Ingress` resource:
+Create a file called `04-whoami-ingress.yml` and insert the *Ingress* resource:
 
 ```yaml tab="04-whoami-ingress.yml"
 apiVersion: networking.k8s.io/v1
