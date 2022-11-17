@@ -16,7 +16,7 @@ The tutorial prerequisites base knowledge and understanding of [Kubernetes](http
 <!-- markdownlint-disable -->
 
 If you are new to these topics do not worry! 
-Check the links below to discover more about the principles of Traefik and Kubernetes
+Check the links below to discover more about the principles of Traefik and Kubernetes.
 
 - [Traefik documentation](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy")
 - [Kubernetes documentation](https://kubernetes.io/docs/home/ "Link to documentation of Traefik Proxy")
@@ -143,22 +143,25 @@ subjects:
 
 In this tutorial, `subjects` only contains the account created in `00-account.yml`.
 
-:::info
-If you prefer to use Helm, please refer to the [official Traefik documentation about it](https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart "Link to official Traefik docs about Helm")
-:::
-
-A [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/#what-is-a-kubernetes-ingress-controller)
-is a software that runs in the same way as any other application on a cluster.
-
 ---
 
 ## Traefik Deployment
 
-To start Traefik on the Kubernetes cluster,
-a [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) resource must exist to describe how to configure
-and scale containers horizontally to support larger workloads.
+:::info
+If you prefer to use Helm, please refer to the [official Traefik documentation about it](https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart "Link to official Traefik docs about Helm").
+:::
 
-Create a file called `02-traefik.yml` and paste the following content:
+A [Ingress Controller](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/#what-is-a-kubernetes-ingress-controller)
+acts as a reverse proxy and load balancer to reduce complexity of Kubernetes traffic routing.
+It provides a bridge between Kubernetes services and external ones.
+
+<!-- markdownlint-disable -->
+A [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/ "Link to Kubernetes docs about Deployments") in Kubernetes describes how to create or modify instances of the Pods that hold a containerized application.
+<!-- markdownlint-enable -->
+
+*Deployments* are used to scale the number of replica Pods, and the way in which they should be updated.
+
+Create a file called `02-traefik.yml` and with the following content:
 
 ```yaml tab="02-traefik.yml"
 kind: Deployment
@@ -198,7 +201,7 @@ The *Deployment* contains an important attribute for customizing Traefik: `args`
 
 These arguments are the static configuration for Traefik.
 
-You can use arguments to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
+You can use `args` (arguments) to enable the dashboard, configure entry points, select dynamic configuration providers, etc.
 
 For more information, please check the [official configuration docs](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Link to official static CLI docs").
 
@@ -213,8 +216,9 @@ In this *Deployment*, the static configuration enables the Traefik dashboard, an
 A *Deployment* manages scaling and then can create multiple containers, called [Pods](https://kubernetes.io/docs/concepts/workloads/pods/).
 Each Pod is configured following the `spec` field in the *Deployment* configuration.
 
-Given that, a *Deployment* can run multiple Traefik Proxy Pods, a piece is required to forward the traffic to any of the instance:
-namely a [`Service`](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services").
+<!-- markdownlint-disable -->
+Given that, a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services") is required to forward the traffic to any of the instances.
+<!-- markdownlint-enable -->
 
 Create a file called `02-traefik-services.yml` and insert the two *Service* resources:
 
@@ -249,7 +253,7 @@ spec:
 :::note
 It is possible to expose a *Service* in different ways!
 
-Depending on your working environment and use case, the `spec.type` might change.
+Depending on your working environment and use case, the `spec:type` might change.
 
 <!-- markdownlint-disable -->
 It is **important** to understand the available [*ServiceTypes*](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types "Link to Kubernetes doc about ServiceTypes") before proceeding to the next step.
@@ -258,9 +262,9 @@ It is **important** to understand the available [*ServiceTypes*](https://kuberne
 
 ---
 
-## Apply Configuration
+## Apply The Configuration
 
-In the next step, you will use `kubectl` to apply the configuration to your cluster.
+In the next step, you will use `kubectl` to apply the configuration to your cluster:
 
 ```shell
 kubectl apply -f 00-role.yml \
@@ -365,7 +369,7 @@ This file configures Traefik to redirect any incoming requests starting with `/`
 
 At this point, all the configurations are ready!
 
-In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster.
+In the last step of this part of the tutorial, you will use `kubectl` to apply the configuration to your cluster:
 
 ```shell
 kubectl apply -f 03-whoami.yml \
@@ -383,6 +387,9 @@ And now access the `whoami` application with cURL:
 
 ```shell
 curl -v http://localhost/
+```
+
+```shell
 Hostname :  6e0030e67d6a
 IP :  127.0.0.1
 IP :  ::1
