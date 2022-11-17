@@ -61,7 +61,7 @@ rules:
 ```
 
 <!-- markdownlint-disable -->
-You can checkout the full file reference for `00-role.yml` in the [official Traefik documentation](https://doc.traefik.io/traefik/reference/dynamic-configuration/kubernetes-crd/#rbac "Link to reference in the official Traefik docs")
+You can checkout the [full file reference](https://raw.githubusercontent.com/svx/k8-traefik/main/reference/rbac.yaml "Link to full file reference on GitHub") for `00-role.yml` on GitHub.
 <!-- markdownlint-enable -->
 
 ## Configure Service Account
