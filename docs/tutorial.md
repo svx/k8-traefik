@@ -36,7 +36,7 @@ This tutorial assumes that you have the following requirements already setup and
 
 ## Permissions And Access
 
-### Create A ClusterRole
+### Create A Cluster Role
 
 [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RABA")(RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within your organization.
 An RBAC Role or ClusterRole contains rules that represent a set of permissions.
@@ -108,7 +108,7 @@ metadata:
 
 ---
 
-### Create A ClusterRoleBinding
+### Create A Cluster Role Binding
 
 <!-- markdownlint-disable -->
 After creating ClusterRole, you assign it to a user or group of users by creating a [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
