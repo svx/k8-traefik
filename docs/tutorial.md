@@ -284,7 +284,7 @@ kubectl apply -f 00-role.yml \
 
 ## 3. Proxying Applications
 
-For this tutorial, you will deploy and use the example [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
+For this tutorial, you will use the example [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
 
 The application is a HTTP server running on port `80` which answers host-related information to the incoming requests.
 
