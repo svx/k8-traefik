@@ -175,7 +175,7 @@ From here, it is possible to enable the dashboard, configure entry points, selec
 
 For more information, please check the [official configuration docs](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Link to official static CLI docs").
 
-In this deployment, the static configuration enables the Traefik dashboard, and uses Kubernetes native Ingress resources as router definitions to route incoming requests.
+In this *Deployment*, the static configuration enables the Traefik dashboard, and uses Kubernetes native Ingress resources as router definitions to route incoming requests.
 
 :::info
 
