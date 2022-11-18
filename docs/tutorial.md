@@ -12,9 +12,8 @@ This tutorial provides a step-by-step introduction how to run an application beh
 At the end of this article, you will have learned how to configure, deploy and use Traefik as reverse proxy with Kubernetes.
 
 <!-- markdownlint-disable -->
-The tutorial assumes basic knowledge and understanding of:
+The tutorial assumes basic knowledge and understanding of [Kubernetes](https://kubernetes.io/ "link to website of Kubernetes"):
 
-- [Kubernetes](https://kubernetes.io/ "link to website of Kubernetes")
 - [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller")
 - [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to k8 docs about ingresses")
 - [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ "Link to k8 docs about deployments")
