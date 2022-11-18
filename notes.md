@@ -13,6 +13,9 @@
 - Adjusted and unified to use "you" with/in voice and tone, removed "we", since we is not always friendly and also not true, the user is following the tutorial and not we and the user
 - Changes guide to tutorial, since it is a step-by-step walk-through tutorial, a guide would be more basic
 - Make wording more friendly and welcoming, nothing is simple or easy :)
+- Adjusted ordering of YAML files
+- unify order in YAML examples, always kind, than api version
+- Add more base info
 
 ---
 

@@ -7,10 +7,12 @@ description: Step-by-step tutorial for using Traefik as reverse proxy with Kuber
 keywords: [traefik, k8, proxy, permissions]
 ---
 
-This tutorial provides a step-by-step introduction on how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
+This tutorial provides a step-by-step introduction to how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
+
+At the end of this article, you will have learned how to configure, deploy and use Traefik as reverse proxy with Kubernetes.
 
 <!-- markdownlint-disable -->
-The tutorial assumes base knowledge and understanding of:
+The tutorial assumes basic knowledge and understanding of:
 
 - [Kubernetes](https://kubernetes.io/ "link to website of Kubernetes")
 - [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to website of Ingress Controller")
@@ -36,9 +38,26 @@ Please make sure you have the following requirements already working:
 
 ---
 
-## 1. Permissions And Access
+## 1. Preparation
 
-Kubernetes works with [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RBAC")(RBAC) which a method of regulating access to computer or network resources based on the roles of individual users within your organization.
+The first thing you will do is to create a directory that you will use to save a bunch of YAML files (you can name this directory anything you like, for example, `traefik-tutorial`).
+
+While using Kubernetes, you will often use this "markup language" to describe the resources that you will orchestrate in your clusters.
+
+```shell
+# Create the directory
+mkdir traefik-tutorial
+```
+After creating a directory, change into it
+
+```shell
+# Change into the directory
+cd traefik-tutorial
+```
+
+## 2. Permissions And Access
+
+Kubernetes works with [Role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/ "Link to Kubernetes docs about RBAC") (RBAC), which a method of regulating access to computer or network resources based on the roles of individual users within your organization.
 
 An RBAC Role or *ClusterRole* contains rules that represent a set of permissions.
 
@@ -46,8 +65,7 @@ The role is then bound to an account used by an application, in this case, Traef
 
 You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/ "Link to documentation about the Kubernetes API") to do so.
 
-### 1.1 Create A Cluster Role
-
+### 2.1 Create A Cluster Role
 
 Create a file called `00-role.yml` with the following content:
 
@@ -55,7 +73,9 @@ Create a file called `00-role.yml` with the following content:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
+  # highlight-start
   name: traefik-role
+  # highlight-end
 
 rules:
   - apiGroups:
@@ -87,13 +107,15 @@ rules:
       - update
 ```
 
+- `name` A cluster can have multiple *ClusterRoles*, this name indicates that this role is only for Traefik 
+
 <!-- markdownlint-disable -->
-You can check the full file reference for `00-role.yml` on [GitHub](https://raw.githubusercontent.com/svx/k8-traefik/main/reference/rbac.yaml "Link to full file reference on GitHub").
+You can check the full file reference for `00-role.yml` on [GitHub](https://raw.githubusercontent.com/svx/k8-traefik/main/reference/00-role.yaml "Link to full file reference on GitHub").
 <!-- markdownlint-enable -->
 
 ---
 
-### 1.2 Configure A Service Account
+### 2.2 Configure A Service Account
 
 In the next step you will create a dedicated [*ServiceAccount*](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ "Link to Kubernetes docs about ServiceAccounts") for Traefik.
 
@@ -107,12 +129,16 @@ Create a file called `00-account.yml` with the following content:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  # highlight-start
   name: traefik-account
+  # highlight-end
 ```
+
+- `name` The name indicates that this role is only for Traefik
 
 ---
 
-### 1.3 Create A Cluster Role Binding
+### 2.3 Create A Cluster Role Binding
 
 <!-- markdownlint-disable -->
 After creating *ClusterRole*, you assign it to a user or group of users by creating a [*ClusterRoleBinding*](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding "Link to Kubernetes docs about role binding").
@@ -147,7 +173,7 @@ subjects:
 
 ---
 
-## 2. Traefik Deployment
+## 3. Traefik Deployment
 
 :::note
 <!-- markdownlint-disable -->
@@ -180,7 +206,7 @@ In this *Deployment*, the static configuration enables the Traefik dashboard, an
 - When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
 :::
 
-Create a file called `02-traefik.yml` and with the following content:
+Create a file called `02-traefik.yml` with the following content:
 
 ```yaml tab="02-traefik.yml"
 kind: Deployment
@@ -218,17 +244,17 @@ spec:
 
 ---
 
-### 2.1 Create A Service
+### 3.1 Create A Service
 
 <!-- markdownlint-disable -->
-Given that, a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services") is required to forward the traffic to any of the instances.
+Given that a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services") is required to forward the traffic to any of the Pod instances.
 <!-- markdownlint-enable -->
 
 Create a file called `02-traefik-services.yml` and insert the two *Service* resources:
 
 ```yaml tab="02-traefik-services.yml"
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: traefik-dashboard-service
 
@@ -266,9 +292,9 @@ It is **important** to understand the available [*ServiceTypes*](https://kuberne
 
 ---
 
-### 2.2 Deploy The Traefik Configuration
+### 3.2 Deploy The Traefik Configuration
 
-Use `kubectl` to apply the configuration to your cluster:
+Use `kubectl` inside the `traefik-tutorial` directory to apply the configuration to your cluster:
 
 ```shell
 kubectl apply -f 00-role.yml \
@@ -278,15 +304,19 @@ kubectl apply -f 00-role.yml \
               -f 02-traefik-services.yml
 ```
 
+:::note
+Because of the way how Kubernetes initializes resources it is good practice to prefix files (`00`, `01`, etc) and apply the files in this order.
+:::
+
 ---
 
-## 3. Proxying Applications
+## 4. Proxying Applications
 
 For this tutorial, you will use the example [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
 
-The application is an HTTP server running on port `80` which answers host-related information to the incoming requests.
+The application is an HTTP server running on port `80` which returns host-related information in response to incoming requests.
 
-Start by creating a file called `03-whoami.yml` and paste the following content:
+Create a file called `03-whoami.yml` and paste the following content:
 
 ```yaml tab="03-whoami.yml"
 kind: Deployment
@@ -316,7 +346,7 @@ spec:
 
 ---
 
-### 3.1 Create A Service Resource
+### 4.1 Create A Service Resource
 
 <!-- markdownlint-disable -->
 In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/#service-resource "Link to Kubernetes docs about service resources") is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a microservice).
@@ -325,8 +355,8 @@ In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networ
 Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
 
 ```yaml tab="03-whoami-services.yml"
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: whoami
 
@@ -340,18 +370,15 @@ spec:
     app: whoami
 ```
 
-Traefik is notified when an Ingress resource is created, updated, or deleted.
-This makes the process dynamic.
-
 ---
 
-### 3.2 Create An Ingress
+### 4.2 Create An Ingress
 
 Ingresses are, in a way, the [dynamic configuration](https://doc.traefik.io/traefik/providers/kubernetes-ingress/ "Link to official Traefik docs about Kubernetes Ingresses") for Traefik.
 
 :::tip
-Find more information on [Ingress Controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/),
-and [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the official Kubernetes documentation.
+You can find more information on [Ingress Controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to Kubernetes docs about Ingress Controllers"),
+and [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to Kubernetes docs about Ingress networking") in the official Kubernetes documentation.
 :::
 
 Create a file called `04-whoami-ingress.yml` and insert the *Ingress* resource:
@@ -380,9 +407,9 @@ At this point, all the configurations are ready.
 
 ---
 
-### 3.3 Deploy The Application
+### 4.3 Deploy The Application
 
-Use `kubectl` to apply the configuration of the application to your cluster:
+Use `kubectl` inside the `traefik-tutorial` directory to apply the configuration of the application to your cluster:
 
 ```shell
 kubectl apply -f 03-whoami.yml \
@@ -416,7 +443,7 @@ Accept: */*
 
 ---
 
-## 4. Continue Reading
+## 5. Continue Reading
 <!-- markdownlint-disable -->
 - [Filter the ingresses](https://doc.traefik.io/traefik/providers/kubernetes-ingress/#ingressclass "Link to Traefik docs about Ingress Class") to use with [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class "Link to Kubernetes docs about Ingress Class")
 - Use [IngressRoute CRD](https://doc.traefik.io/traefik/providers/kubernetes-crd/ "Kubernetes Ingress Controller")
@@ -425,6 +452,6 @@ Accept: */*
 
 ---
 
-## 5. Recap
+## 6. Recap
 
 In this tutorial you learned the basics about how to configure, deploy and use Traefik as reverse proxy with Kubernetes.
