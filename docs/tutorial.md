@@ -7,7 +7,7 @@ description: Step-by-step tutorial for using Traefik as reverse proxy with Kuber
 keywords: [traefik, k8, proxy, permissions]
 ---
 
-This tutorial provides a step-by-step introduction to how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
+This tutorial provides a step-by-step introduction how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
 
 At the end of this article, you will have learned how to configure, deploy and use Traefik as reverse proxy with Kubernetes.
 
@@ -255,7 +255,7 @@ spec:
 ### 3.1 Create A Service
 
 <!-- markdownlint-disable -->
-Given that a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services") is required to forward the traffic to any of the Pod instances.
+Given that a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](https://kubernetes.io/docs/concepts/services-networking/service/ "Link to Kubernetes docs about services") is required to forward the traffic to any of the Pods.
 <!-- markdownlint-enable -->
 
 Create a file called `02-traefik-services.yml` and insert the two *Service* resources:
@@ -269,9 +269,11 @@ metadata:
 
 spec:
   type: LoadBalancer
+  # highlight-start
   ports:
     - port: 8080
       targetPort: dashboard
+  # highlight-end
   selector:
     app: traefik
 ---
@@ -282,12 +284,16 @@ metadata:
 
 spec:
   type: LoadBalancer
+  # highlight-start
   ports:
     - port: 80 
       targetPort: web
+  # highlight-end
   selector:
     app: traefik
 ```
+
+This configures Kubernetes to make the Traefik dashboard available on port `8080` and proxy request on port `80`.
 
 :::note
 It is possible to expose a *Service* in different ways!
@@ -324,6 +330,8 @@ Because of the way how Kubernetes initializes resources it is good practice to p
 For this tutorial, you will use the example [traefik/whoami](https://github.com/traefik/whoami "Link to example application on GitHub") application.
 
 The application is an HTTP server running on port `80` which returns host-related information in response to incoming requests.
+
+Check the [README](https://github.com/traefik/whoami/blob/master/README.md "link to README of https://github.com/traefik/whoami") for more information about this app.
 
 Create a file called `03-whoami.yml` and paste the following content:
 
@@ -389,7 +397,7 @@ Ingresses are, in a way, the [dynamic configuration](https://doc.traefik.io/trae
 
 :::tip
 You can find more information on [Ingress Controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/ "Link to Kubernetes docs about Ingress Controllers"),
-and [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to Kubernetes docs about Ingress networking") in the official Kubernetes documentation.
+and about [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/ "Link to Kubernetes docs about Ingress networking") in the official Kubernetes documentation.
 :::
 
 Create a file called `04-whoami-ingress.yml` and insert the *Ingress* resource:
