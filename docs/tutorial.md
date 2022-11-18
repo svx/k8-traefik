@@ -438,7 +438,7 @@ kubectl apply -f 03-whoami.yml \
 
 You should be able to access the `whoami` application and the Traefik dashboard.
 
-Load the dashboard on a web browser: [`http://localhost:8080`](http://localhost:8080 "Link to localhost on port 8080 for the Traefik dashboard").
+Load the dashboard in your web browser: [`http://localhost:8080`](http://localhost:8080 "Link to localhost on port 8080 for the Traefik dashboard").
 <!-- markdown-link-check-disable -->
 ![Traefik Dashboard](/img/webui-dashboard.png 'Traefik Dashboard')
 <!-- markdown-link-check-enable -->
