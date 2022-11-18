@@ -70,6 +70,7 @@ You will use the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/k
 Create a file called `00-role.yml` with the following content:
 
 ```yaml title="00-role.yml"
+# Docs: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -107,7 +108,7 @@ rules:
       - update
 ```
 
-- `name` A cluster can have multiple *ClusterRoles*, this name indicates that this role is only for Traefik 
+- `name` A cluster can have multiple *ClusterRoles*, this name indicates that this role is used for Traefik 
 
 <!-- markdownlint-disable -->
 You can check the full file reference for `00-role.yml` on [GitHub](https://raw.githubusercontent.com/svx/k8-traefik/main/reference/00-role.yaml "Link to full file reference on GitHub").
@@ -126,6 +127,7 @@ A [*ServiceAccount*](https://kubernetes.io/docs/reference/kubernetes-api/authent
 Create a file called `00-account.yml` with the following content:
 
 ```yaml title="00-account.yml"
+# Docs: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -134,7 +136,7 @@ metadata:
   # highlight-end
 ```
 
-- `name` The name indicates that this role is only for Traefik
+- `name` The name indicates that this role is used for Traefik
 
 ---
 
@@ -150,6 +152,7 @@ In this tutorial, `subjects` (see the example below) only contains the *ServiceA
 Create a file called `01-role-binding.yml` with the following content:
 
 ```yaml title="01-role-binding.yml"
+# Docs: https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-binding-v1/#ClusterRoleBinding
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -201,14 +204,13 @@ For more information, please check the [official configuration docs](https://doc
 In this *Deployment*, the static configuration enables the Traefik dashboard, and uses Kubernetes native Ingress resources as router definitions to route incoming requests.
 
 :::info
-
-- When there is no entry point in the static configuration, Traefik creates a default one called *web* using the port `80` routing HTTP requests.
-- When enabling the [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs") mode, Traefik exposes the dashboard on the port `8080`.
+When there is no entry point in the static configuration, Traefik creates a default one called *web* using the port `80` routing HTTP requests.
 :::
 
 Create a file called `02-traefik.yml` with the following content:
 
 ```yaml tab="02-traefik.yml"
+# Docs: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -226,7 +228,9 @@ spec:
       labels:
         app: traefik
     spec:
+      # highlight-start
       serviceAccountName: traefik-account
+      # highlight-end
       containers:
         - name: traefik
           image: traefik:v2.9
@@ -244,6 +248,10 @@ spec:
 
 ---
 
+- [`serviceAccountName`](#22-configure-a-service-account "Link to docs about service accounts in this tutorial"): Refers to the used *ServiceAccount* (traefik-account)
+- [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs"): Traefik exposes the dashboard on the port `8080`
+- [`providers.kubernetesingress`](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Traefik Ingress Controller for Kubernetes - CLI setting"):  Enable Kubernetes backend with default settings (Ingress Controller)
+
 ### 3.1 Create A Service
 
 <!-- markdownlint-disable -->
@@ -253,6 +261,7 @@ Given that a *Deployment* can run multiple Traefik Proxy Pods, a [*Service*](htt
 Create a file called `02-traefik-services.yml` and insert the two *Service* resources:
 
 ```yaml tab="02-traefik-services.yml"
+# Docs: https://kubernetes.io/docs/concepts/services-networking/service
 kind: Service
 apiVersion: v1
 metadata:
@@ -319,6 +328,7 @@ The application is an HTTP server running on port `80` which returns host-relate
 Create a file called `03-whoami.yml` and paste the following content:
 
 ```yaml tab="03-whoami.yml"
+# Docs: https://kubernetes.io/docs/concepts/services-networking/service
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -355,6 +365,7 @@ In Kubernetes, a [*Service*](https://kubernetes.io/docs/concepts/services-networ
 Continue by creating the following *Service* resource in a file called `03-whoami-services.yml`:
 
 ```yaml tab="03-whoami-services.yml"
+# Docs: https://kubernetes.io/docs/concepts/services-networking/service/#service-resource
 kind: Service
 apiVersion: v1
 metadata:

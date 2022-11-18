@@ -16,6 +16,7 @@
 - Adjusted ordering of YAML files
 - unify order in YAML examples, always kind, than api version
 - Add more base info
+- Make sure ful reference (00-YAML) uses the same order
 
 ---
 
