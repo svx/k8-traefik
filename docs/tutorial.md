@@ -434,7 +434,7 @@ Load the dashboard on a web browser: [`http://localhost:8080`](http://localhost:
 <!-- markdown-link-check-disable -->
 ![Traefik Dashboard](/img/webui-dashboard.png 'Traefik Dashboard')
 <!-- markdown-link-check-enable -->
-And now access the `whoami` application with cURL:
+And now access the `whoami` application with `curl`:
 
 ```shell
 curl -v http://localhost/
