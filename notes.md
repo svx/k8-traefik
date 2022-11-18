@@ -17,6 +17,7 @@
 - unify order in YAML examples, always kind, than api version
 - Add more base info
 - Make sure ful reference (00-YAML) uses the same order
+- Put it online as a site, because a good UX/DX is not only the content but also the (visual) appearance
 
 ---
 
