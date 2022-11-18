@@ -217,8 +217,9 @@ metadata:
   name: traefik-deployment
   labels:
     app: traefik
-
+# highlight-start
 spec:
+# highlight-end
   replicas: 1
   selector:
     matchLabels:
@@ -248,6 +249,7 @@ spec:
 
 ---
 
+- [`spec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/#DeploymentSpec "Link to Kubernetes docs about DeploymentSpec "): Configuration of the Pod(s)
 - [`serviceAccountName`](#22-configure-a-service-account "Link to docs about service accounts in this tutorial"): Refers to the used *ServiceAccount* (traefik-account)
 - [`api.insecure`](https://doc.traefik.io/traefik/operations/api/#insecure "Link to Traefik docs"): Traefik exposes the dashboard on the port `8080`
 - [`providers.kubernetesingress`](https://doc.traefik.io/traefik/reference/static-configuration/cli/ "Traefik Ingress Controller for Kubernetes - CLI setting"):  Enable Kubernetes backend with default settings (Ingress Controller)
