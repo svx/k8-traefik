@@ -124,8 +124,8 @@ Create a file called `00-account.yml` with the following content:
 
 ```yaml title="00-account.yml"
 # Docs: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account
-apiVersion: v1
 kind: ServiceAccount
+apiVersion: v1
 metadata:
   # highlight-start
   name: traefik-account
@@ -275,8 +275,8 @@ spec:
   selector:
     app: traefik
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: traefik-web-service
 
@@ -401,8 +401,8 @@ and about [Ingresses](https://kubernetes.io/docs/concepts/services-networking/in
 Create a file called `04-whoami-ingress.yml` and insert the *Ingress* resource:
 
 ```yaml tab="04-whoami-ingress.yml"
-apiVersion: networking.k8s.io/v1
 kind: Ingress
+apiVersion: networking.k8s.io/v1
 metadata:
   name: whoami-ingress
 spec:
