@@ -44,7 +44,7 @@ The first thing you will do is to create a directory that you will use to save a
 # Create the directory
 mkdir traefik-tutorial
 ```
-After creating a directory, change into it
+After creating a directory, change into it.
 
 ```shell
 # Change into the directory
@@ -132,7 +132,7 @@ metadata:
   # highlight-end
 ```
 
-- `name` The name indicates that this role is used for Traefik
+- `name` The name indicates that this *ServiceAccount* is used for Traefik
 
 ---
 
@@ -464,7 +464,7 @@ Accept: */*
 <!-- markdownlint-disable -->
 - [Filter the ingresses](https://doc.traefik.io/traefik/providers/kubernetes-ingress/#ingressclass "Link to Traefik docs about Ingress Class") to use with [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class "Link to Kubernetes docs about Ingress Class")
 - Use [IngressRoute CRD](https://doc.traefik.io/traefik/providers/kubernetes-crd/ "Kubernetes Ingress Controller")
-- Protect [ingresses with TLS (Transport Layer Security)](https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/#enabling-tls-via-annotations "Ingresses with TLS")
+- Protect [Ingresses with TLS (Transport Layer Security)](https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/#enabling-tls-via-annotations "Ingresses with TLS")
 <!-- markdownlint-enable -->
 
 ---
