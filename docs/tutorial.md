@@ -7,7 +7,7 @@ description: Step-by-step tutorial for using Traefik as reverse proxy with Kuber
 keywords: [traefik, k8, proxy, tutorial]
 ---
 
-This tutorial provides a step-by-step introduction how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
+This tutorial provides a step-by-step walk-through of how to run an application behind [Traefik Proxy](https://doc.traefik.io/traefik/ "Link to documentation of Traefik Proxy") on Kubernetes.
 
 At the end of this article, you will have learned how to configure, deploy and use Traefik as reverse proxy with Kubernetes.
 
