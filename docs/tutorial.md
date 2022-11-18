@@ -40,8 +40,6 @@ Please make sure you have the following requirements already working:
 
 The first thing you will do is to create a directory that you will use to save a bunch of YAML files (you can name this directory anything you like, for example, `traefik-tutorial`).
 
-While using Kubernetes, you will often use this "markup language" to describe the resources that you will orchestrate in your clusters.
-
 ```shell
 # Create the directory
 mkdir traefik-tutorial
