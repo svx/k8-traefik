@@ -189,8 +189,8 @@ acts as a reverse proxy and load balancer to reduce complexity of Kubernetes tra
 It provides a bridge between Kubernetes services and external ones.
 
 <!-- markdownlint-disable -->
-A [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/ "Link to Kubernetes docs about Deployments") in Kubernetes describes how to create or modify instances of the Pods that hold a containerized application.
-It can create multiple containers (Pods).
+A [*Deployment*](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/ "Link to Kubernetes docs about Deployments") in Kubernetes describes how to create or modify instances of the containers (Pods) that hold a containerized application.
+It can create multiple Pods.
 Each Pod is configured following the `spec` field in the *Deployment* configuration.
 <!-- markdownlint-enable -->
 To start Traefik on the Kubernetes cluster, a *Deployment* resource is needed.
